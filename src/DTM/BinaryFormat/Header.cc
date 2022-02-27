@@ -4,32 +4,25 @@
 #include <cstddef>
 #include <cstdint>
 
+#include <Util/ReadMemoryOffsetAs.h>
+
 namespace tas::dtm::binary
 {
-    template <typename T>
-    constexpr T Header::read(uint8_t *bytes, size_t offset)
+    Header::Header()
     {
-        T value = 0;
-
-        for (size_t i = 0; i < sizeof(T); i++)
-        {
-            value |= (T)bytes[offset + i] << (i << 3);
-        }
-
-        return value;
     }
 
     void Header::operator=(uint8_t *bytes)
     {
-        signature = read<uint32_t>(bytes, 0x00);
+        signature = util::readMemoryOffsetAs<uint32_t>(bytes, 0x00);
         isWiiGame = bytes[0x0a];
         controllersPluggedIn = bytes[0x0b];
         startsFromSaveState = bytes[0x0c];
-        viCount = read<uint64_t>(bytes, 0x0d);
-        inputCount = read<uint64_t>(bytes, 0x15);
-        lagCount = read<uint64_t>(bytes, 0x1d);
-        rerecordCount = read<uint32_t>(bytes, 0x2d);
-        recordingStartTime = read<uint64_t>(bytes, 0x81);
+        viCount = util::readMemoryOffsetAs<uint64_t>(bytes, 0x0d);
+        inputCount = util::readMemoryOffsetAs<uint64_t>(bytes, 0x15);
+        lagCount = util::readMemoryOffsetAs<uint64_t>(bytes, 0x1d);
+        rerecordCount = util::readMemoryOffsetAs<uint32_t>(bytes, 0x2d);
+        recordingStartTime = util::readMemoryOffsetAs<uint64_t>(bytes, 0x81);
         savedConfigValid = bytes[0x89];
         idleSkipping = bytes[0x8a];
         dualCoresEnabled = bytes[0x8b];
@@ -52,9 +45,9 @@ namespace tas::dtm::binary
         pal60 = bytes[0x9c];
         lanuage = bytes[0x9d];
         jitBranchFollowing = bytes[0x9f];
-        dspIromHash = read<uint32_t>(bytes, 0xe5);
-        dspCoefHash = read<uint32_t>(bytes, 0xe9);
-        tickCount = read<uint64_t>(bytes, 0xed);
+        dspIromHash = util::readMemoryOffsetAs<uint32_t>(bytes, 0xe5);
+        dspCoefHash = util::readMemoryOffsetAs<uint32_t>(bytes, 0xe9);
+        tickCount = util::readMemoryOffsetAs<uint64_t>(bytes, 0xed);
 
         std::copy(bytes + 0x04, bytes + 0x04 + 6, gameId);
         std::copy(bytes + 0x31, bytes + 0x31 + 32, author);

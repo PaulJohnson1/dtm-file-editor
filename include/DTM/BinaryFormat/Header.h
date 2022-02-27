@@ -24,6 +24,8 @@ namespace tas::dtm::binary
     class Header
     {
     public:
+        Header();
+
         uint32_t signature;
         char gameId[6];
         bool isWiiGame;
@@ -69,10 +71,6 @@ namespace tas::dtm::binary
         uint32_t dspCoefHash;
         uint64_t tickCount;
         char reserved_3[11];
-
-    private:
-        template <typename T>
-        constexpr T read(uint8_t *bytes, size_t offset);
 
     public:
         void operator=(uint8_t *bytes);

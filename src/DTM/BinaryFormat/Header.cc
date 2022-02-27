@@ -1,5 +1,6 @@
 #include <DTM/BinaryFormat/Header.h>
 
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
 

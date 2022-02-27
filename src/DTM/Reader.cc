@@ -18,8 +18,6 @@ namespace tas::dtm::binary
 
         header = bytes;
 
-        std::cout << header.tickCount << std::endl;
-
         size_t position = 0x100;
 
         while (true)

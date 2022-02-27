@@ -8,11 +8,12 @@
 
 namespace tas::dtm::binary
 {
+    /**
+     * Writes to a `DecodedDTMFile`
+     */
     class Reader
     {
     private:
-        std::vector<DataPacket> packets;
-
         uint8_t *bytes;
         size_t size;
 
@@ -25,7 +26,8 @@ namespace tas::dtm::binary
         bool parsePacket(size_t &currentPosition);
 
     public:
-        Header header;
+        Header dtmHeader;
+        std::vector<DataPacket> packets;
 
         Reader(uint8_t *bytes, size_t size);
         ~Reader();

@@ -4,14 +4,15 @@
 #include <QMainWindow>
 #include <QMenu>
 
-#include <DTM/BinaryFormat/File.h>
+#include <DTM/DecodedDTMFile.h>
+#include <Util/File.h>
 
 namespace tas::input_gui
 {
     class MainWindow : public QMainWindow
     {
     public:
-        dtm::File fileManagerComponent;
+        // dtm::DecodedDTMFile dtmFile;
         QAction *actionOpenDTMFile;
         QMenu *menuFile;
 

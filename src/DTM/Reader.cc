@@ -8,6 +8,7 @@
 #include <DTM/BinaryFormat/Constants/DataReportMode.h>
 #include <DTM/BinaryFormat/DataPacket.h>
 #include <DTM/BinaryFormat/Header.h>
+#include <DTM/DecodedDTMFile.h>
 #include <Util/ReadMemoryOffsetAs.h>
 
 namespace tas::dtm::binary
@@ -17,7 +18,7 @@ namespace tas::dtm::binary
         if (size < 0x100)
             throw std::runtime_error("buffer is smaller than 256 bytes");
 
-        header = bytes;
+        dtmHeader = bytes;
 
         size_t position = 0x100;
 
@@ -91,6 +92,8 @@ namespace tas::dtm::binary
             throw std::runtime_error("unknown report mode");
 
         currentPosition += packetSize + 1;
+
+        packets.push_back(packet);
 
         return false;
     }

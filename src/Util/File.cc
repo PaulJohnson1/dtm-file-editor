@@ -1,10 +1,11 @@
-#include <DTM/BinaryFormat/File.h>
+#include <Util/File.h>
 
 #include <cstdint>
 #include <exception>
 #include <fstream>
 #include <iostream>
-#include <list>
+#include <cstddef>
+#include <cstdint>
 
 #include <QByteArray>
 #include <QFile>
@@ -17,20 +18,20 @@
 
 namespace tas::dtm
 {
-    File::File(QMainWindow *parent)
+    File::File(uint8_t *bytes, size_t size) : bytes(bytes), size(size)
     {
-        this->parent = parent;
     }
 
     File::~File()
     {
+        delete[] bytes;
     }
 
-    dtm::binary::Reader *File::open()
+    File *File::open(QMainWindow *parent)
     {
         QString qFileName = QFileDialog::getOpenFileName(parent,
                                                          "Open DTM File",
-                                                         this->fileName,
+                                                         "",
                                                          "Dolphin Tas Movie (*.dtm)");
 
         if (qFileName == "")
@@ -41,22 +42,22 @@ namespace tas::dtm
             throw std::runtime_error("Couldn't open file");
 
         std::string filePath = qFileName.toStdString();
-        std::fstream file(filePath);
+        std::fstream stream(filePath);
 
-        file.seekg(0, std::ios::end);
-        size_t fileSize = file.tellg();
-        file.seekg(0, std::ios::beg);
+        stream.seekg(0, std::ios::end);
+        size_t fileSize = stream.tellg();
+        stream.seekg(0, std::ios::beg);
 
         uint8_t *fileContents = new uint8_t[fileSize];
 
-        file.read((char *)fileContents, fileSize);
+        stream.read((char *)fileContents, fileSize);
 
-        dtm::binary::Reader *reader = new dtm::binary::Reader(fileContents, fileSize);
+        File *file = new File(fileContents, fileSize);
 
-        return reader;
+        return file;
     }
 
-    void File::save(dtm::binary::Reader *data)
+    void File::save(File *data)
     {
     }
 }

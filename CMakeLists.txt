@@ -2,9 +2,10 @@ cmake_minimum_required(VERSION 3.5.0)
 project(TAS-Input-GUI)
 
 set(SRCS
+    src/DTM/BinaryFormat/File.cc
+    src/DTM/BinaryFormat/Header.cc
     src/DTM/Reader.cc
     src/DTM/Writer.cc
-    src/GUI/Component/File.cc
     src/GUI/MainWindow.cc
     src/main.cc)
 

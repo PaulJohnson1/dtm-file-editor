@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <cstdint>
 
 namespace tas::dtm::binary
 {
@@ -20,7 +21,7 @@ namespace tas::dtm::binary
     /**
      * https://tasvideos.org/EmulatorResources/DTM
      */
-    struct Header
+    class Header
     {
     public:
         uint32_t signature;
@@ -41,6 +42,7 @@ namespace tas::dtm::binary
         bool savedConfigValid;
         bool idleSkipping;
         bool dualCoresEnabled;
+        bool progressiveScanning;
         char emulationLevel;
         bool fastDiscSpeedup;
         char cpuCore;
@@ -63,9 +65,16 @@ namespace tas::dtm::binary
         char reserved_2[9];
         char secondIsoDiscName[40];
         uint8_t gitRevisionHash[20];
-        int32_t dspIromHash;
-        int32_t dspCoefHash;
+        uint32_t dspIromHash;
+        uint32_t dspCoefHash;
         uint64_t tickCount;
         char reserved_3[11];
+
+    private:
+        template <typename T>
+        constexpr T read(uint8_t *bytes, size_t offset);
+
+    public:
+        void operator=(uint8_t *bytes);
     };
 }

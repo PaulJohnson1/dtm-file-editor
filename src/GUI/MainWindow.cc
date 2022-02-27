@@ -6,7 +6,7 @@
 #include <QMainWindow>
 #include <QMenuBar>
 
-#include <GUI/Component/File.h>
+#include <DTM/BinaryFormat/File.h>
 
 namespace tas::input_gui
 {

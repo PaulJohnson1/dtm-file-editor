@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QMenu>
 
-#include <GUI/Component/File.h>
+#include <DTM/BinaryFormat/File.h>
 
 namespace tas::input_gui
 {

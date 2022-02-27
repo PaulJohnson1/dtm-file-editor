@@ -5,10 +5,9 @@
 #include <cstdint>
 #include <exception>
 
-#include <iostream> // dont forget to remove pls
-
-#include <DTM/BinaryFormat/DataPacket.h>
 #include <DTM/BinaryFormat/Constants/DataReportMode.h>
+#include <DTM/BinaryFormat/DataPacket.h>
+#include <DTM/BinaryFormat/Header.h>
 
 namespace tas::dtm::binary
 {
@@ -16,6 +15,10 @@ namespace tas::dtm::binary
     {
         if (size < 0x100)
             throw std::runtime_error("buffer is smaller than 256 bytes");
+
+        header = bytes;
+
+        std::cout << header.tickCount << std::endl;
 
         size_t position = 0x100;
 
@@ -74,7 +77,6 @@ namespace tas::dtm::binary
         if (packet.reportMode == DataReportMode::Buttons)
         {
             packet.buttonFlags = fromLocalAddressU16(2);
-            std::cout << packet.buttonFlags << std::endl;
         }
         else if (packet.reportMode == DataReportMode::Buttons_IrBytes10_ExtensionBytes9)
         {

@@ -6,7 +6,7 @@
 
 namespace tas::dtm::binary
 {
-    class DataPacket
+    class DataFrame
     {
     public:
         uint8_t dataByteSize;
@@ -14,7 +14,7 @@ namespace tas::dtm::binary
         uint16_t buttonFlags;
         uint8_t accelerometor[3];
         
-        // for ir and extension data we use the max size possible for the packet
+        // for ir and extension data we use the max size possible for the frame
         uint8_t irData[16];
         uint8_t extensionData[19];
     };

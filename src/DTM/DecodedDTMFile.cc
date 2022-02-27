@@ -5,7 +5,7 @@
 #include <vector>
 
 #include <DTM/BinaryFormat/Header.h>
-#include <DTM/BinaryFormat/DataPacket.h>
+#include <DTM/BinaryFormat/DataFrame.h>
 #include <DTM/Reader.h>
 
 namespace tas::dtm

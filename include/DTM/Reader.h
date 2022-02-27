@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <vector>
 
-#include <DTM/BinaryFormat/DataPacket.h>
+#include <DTM/BinaryFormat/DataFrame.h>
 #include <DTM/BinaryFormat/Header.h>
 
 namespace tas::dtm::binary
@@ -23,11 +23,11 @@ namespace tas::dtm::binary
          * @param currentPosition aka offset
          * @return returns true if you are at the end of the binary
          */
-        bool parsePacket(size_t &currentPosition);
+        bool parseFrame(size_t &currentPosition);
 
     public:
         Header dtmHeader;
-        std::vector<DataPacket> packets;
+        std::vector<DataFrame> frames;
 
         Reader(uint8_t *bytes, size_t size);
         ~Reader();

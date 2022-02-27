@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.5.0)
 project(TAS-Input-GUI)
 
 set(SRCS
-    src/DTM/Editor.cc
     src/DTM/Reader.cc
     src/DTM/Writer.cc
     src/GUI/Component/File.cc

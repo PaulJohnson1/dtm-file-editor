@@ -13,6 +13,8 @@
 #include <QMainWindow>
 #include <QString>
 
+#include <DTM/Reader.h>
+
 namespace tas::dtm
 {
     File::File(QMainWindow *parent)
@@ -24,7 +26,7 @@ namespace tas::dtm
     {
     }
 
-    std::list<uint8_t> *File::open()
+    dtm::binary::Reader *File::open()
     {
         QString qFileName = QFileDialog::getOpenFileName(parent,
                                                          "Open DTM File",
@@ -49,16 +51,12 @@ namespace tas::dtm
 
         file.read((char *)fileContents, fileSize);
 
-        std::list<uint8_t> *list = new std::list<uint8_t>();
-        for (size_t i = 0; i < fileSize; i++)
-        {
-            list->push_back(fileContents[i]);
-        }
+        dtm::binary::Reader *reader = new dtm::binary::Reader(fileContents, fileSize);
 
-        return list;
+        return reader;
     }
 
-    void File::save(std::list<uint8_t> *data)
+    void File::save(dtm::binary::Reader *data)
     {
     }
 }

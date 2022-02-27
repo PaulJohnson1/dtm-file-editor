@@ -10,7 +10,7 @@
 
 namespace tas::input_gui
 {
-    MainWindow::MainWindow() : fileManagerComponent(dtm::File(this))
+    MainWindow::MainWindow() : fileManagerComponent(dtm::File(this)) 
     {
         initializeMenuBar();
     }
@@ -24,7 +24,7 @@ namespace tas::input_gui
     {
         actionOpenDTMFile = new QAction(tr("&Open..."), this);
 
-        actionOpenDTMFile->setShortcut(Qt::Modifier::CTRL + Qt::Key::Key_O);
+        actionOpenDTMFile->setShortcut(Qt::Modifier::CTRL | Qt::Key::Key_O);
 
         connect(actionOpenDTMFile, &QAction::triggered, this, &MainWindow::onOpenDTMFile);
     }

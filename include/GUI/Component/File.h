@@ -1,10 +1,11 @@
 #pragma once
 
 #include <cstdint>
-#include <list>
 
 #include <QMainWindow>
 #include <QString>
+
+#include <DTM/Reader.h>
 
 namespace tas::dtm
 {
@@ -13,12 +14,12 @@ namespace tas::dtm
     private:
         QString fileName = "";
         QMainWindow *parent;
-        std::list<uint8_t> *fileByteList;
+        dtm::binary::Reader *frames;
 
     public:
         File(QMainWindow *parent);
         ~File();
-        std::list<uint8_t> *open();
-        void save(std::list<uint8_t> *data);
+        dtm::binary::Reader *open();
+        void save(dtm::binary::Reader *data);
     };
 }

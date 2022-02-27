@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace tas::dtm
+namespace tas::dtm::format
 {
     enum class EmulationLevel
     {
@@ -18,7 +18,7 @@ namespace tas::dtm
     };
 
     /**
-     * @brief https://tasvideos.org/EmulatorResources/DTM
+     * https://tasvideos.org/EmulatorResources/DTM
      */
     struct Header
     {
@@ -31,11 +31,7 @@ namespace tas::dtm
         uint64_t viCount;
         uint64_t inputCount;
         uint64_t lagCount;
-
-        // private:
         char reserved_0[8];
-
-        // public:
         uint32_t rerecordCount;
         char author[32];
         char videoBackend[16];
@@ -62,24 +58,14 @@ namespace tas::dtm
         bool rerecordedInNetplay;
         bool pal60;
         uint32_t lanuage;
-
-        // private:
         char reserved_1[1];
-
-        // public:
         bool jitBranchFollowing;
-
-        // private:
         char reserved_2[9];
-
-        // public:
         char secondIsoDiscName[40];
         uint8_t gitRevisionHash[20];
         int32_t dspIromHash;
         int32_t dspCoefHash;
         uint64_t tickCount;
-
-        // private:
         char reserved_3[11];
     };
 }

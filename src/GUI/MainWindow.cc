@@ -6,15 +6,18 @@
 #include <QMainWindow>
 #include <QMenuBar>
 
+#include <GUI/Component/File.h>
+
 namespace tas::input_gui
 {
-    MainWindow::MainWindow()
+    MainWindow::MainWindow() : fileManagerComponent(dtm::File(this))
     {
         initializeMenuBar();
     }
 
     MainWindow::~MainWindow()
     {
+        delete actionOpenDTMFile;
     }
 
     void MainWindow::initializeActions()
@@ -28,6 +31,7 @@ namespace tas::input_gui
 
     void MainWindow::onOpenDTMFile()
     {
+        fileManagerComponent.open();
     }
 
     void MainWindow::initializeMenuBar()

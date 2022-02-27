@@ -1,6 +1,6 @@
 #include <DTM/Reader.h>
 
-namespace tas::dtm::format
+namespace tas::dtm::binary
 {
     Reader::Reader()
     {

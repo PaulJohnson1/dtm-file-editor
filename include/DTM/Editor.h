@@ -1,6 +1,6 @@
 #pragma once
 
-namespace tas::dtm::format
+namespace tas::dtm::binary
 {
     class Editor
     {

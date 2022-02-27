@@ -1,6 +1,6 @@
 #include <DTM/Writer.h>
 
-namespace tas::dtm::format
+namespace tas::dtm::binary
 {
     Writer::Writer()
     {

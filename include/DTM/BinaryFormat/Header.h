@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace tas::dtm::format
+namespace tas::dtm::binary
 {
     enum class EmulationLevel
     {

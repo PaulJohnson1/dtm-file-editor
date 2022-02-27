@@ -1,6 +1,6 @@
 #include <DTM/Editor.h>
 
-namespace tas::dtm::format
+namespace tas::dtm::binary
 {
     Editor::Editor()
     {

@@ -7,6 +7,7 @@
 #include <DTM/BinaryFormat/DataFrame.h>
 #include <DTM/BinaryFormat/Header.h>
 #include <DTM/Reader.h>
+#include <Util/File.h>
 
 namespace tas::dtm
 {
@@ -16,11 +17,10 @@ namespace tas::dtm
     class DecodedDTMFile
     {
     private:
-        binary::Reader reader;
+        File *file;
     public:
-        binary::Header dtmHeader;
-        std::vector<binary::DataFrame> frames;
+        binary::Reader reader;
 
-        DecodedDTMFile(uint8_t *bytes, size_t size);
+        DecodedDTMFile(File *bytes);
     };
 }

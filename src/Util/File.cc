@@ -48,6 +48,7 @@ namespace tas::dtm
         size_t fileSize = stream.tellg();
         stream.seekg(0, std::ios::beg);
 
+        // potentially will be over 8 mb which would overflow the stack
         uint8_t *fileContents = new uint8_t[fileSize];
 
         stream.read((char *)fileContents, fileSize);

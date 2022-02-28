@@ -12,7 +12,7 @@ namespace tas::input_gui
     class MainWindow : public QMainWindow
     {
     public:
-        // dtm::DecodedDTMFile dtmFile;
+        dtm::DecodedDTMFile *dtmFile;
         QAction *actionOpenDTMFile;
         QMenu *menuFile;
 

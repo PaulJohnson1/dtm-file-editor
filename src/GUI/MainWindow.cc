@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QMenuBar>
 
+#include <DTM/DecodedDTMFile.h>
 #include <Util/File.h>
 
 namespace tas::input_gui

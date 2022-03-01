@@ -1,5 +1,6 @@
 #pragma once
 
+#include <bitset>
 #include <cstdint>
 
 #include <DTM/BinaryFormat/Constants/DataReportMode.h>
@@ -11,7 +12,7 @@ namespace tas::dtm::binary
     public:
         uint8_t dataByteSize;
         uint8_t reportMode;
-        uint16_t buttonFlags;
+        std::bitset<16> buttonFlags;
         uint8_t accelerometor[3];
         
         // for ir and extension data we use the max size possible for the frame

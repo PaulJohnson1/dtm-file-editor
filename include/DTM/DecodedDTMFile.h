@@ -22,5 +22,6 @@ namespace tas::dtm
         binary::Reader reader;
 
         DecodedDTMFile(File *bytes);
+        ~DecodedDTMFile();
     };
 }

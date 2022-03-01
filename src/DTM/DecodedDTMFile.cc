@@ -14,4 +14,9 @@ namespace tas::dtm
     DecodedDTMFile::DecodedDTMFile(File *file) : file(file), reader(binary::Reader(file->bytes, file->size))
     {
     }
+
+    DecodedDTMFile::~DecodedDTMFile()
+    {
+        delete file;
+    }
 }

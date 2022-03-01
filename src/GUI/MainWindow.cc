@@ -2,44 +2,23 @@
 
 #include <iostream>
 
-#include <QAction>
 #include <QMainWindow>
-#include <QMenuBar>
 
 #include <DTM/DecodedDTMFile.h>
 #include <Util/File.h>
 
 namespace tas::input_gui
 {
-    MainWindow::MainWindow()
+    MainWindow::MainWindow() : dtmFile(dtm::DecodedDTMFile(dtm::File::open(this)))
     {
-        initializeMenuBar();
+        renderDtmFile();
     }
 
     MainWindow::~MainWindow()
     {
-        delete actionOpenDTMFile;
     }
 
-    void MainWindow::initializeActions()
+    void MainWindow::renderDtmFile()
     {
-        actionOpenDTMFile = new QAction(tr("&Open..."), this);
-
-        actionOpenDTMFile->setShortcut(Qt::Modifier::CTRL | Qt::Key::Key_O);
-
-        connect(actionOpenDTMFile, &QAction::triggered, this, &MainWindow::onOpenDTMFile);
-    }
-
-    void MainWindow::onOpenDTMFile()
-    {
-        dtm::File::open(this);
-    }
-
-    void MainWindow::initializeMenuBar()
-    {
-        initializeActions();
-        
-        menuFile = menuBar()->addMenu(tr("&File"));
-        menuFile->addAction(actionOpenDTMFile);
     }
 }

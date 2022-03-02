@@ -7,11 +7,9 @@
 #include <cstddef>
 #include <cstdint>
 
-#include <QByteArray>
 #include <QFile>
 #include <QFileDialog>
-#include <QMessageBox>
-#include <QMainWindow>
+#include <QWidget>
 #include <QString>
 
 #include <DTM/Reader.h>
@@ -27,7 +25,7 @@ namespace tas::dtm
         delete[] bytes;
     }
 
-    File *File::open(QMainWindow *parent)
+    File *File::open(QWidget *parent)
     {
         QString qFileName = QFileDialog::getOpenFileName(parent,
                                                          "Open DTM File",

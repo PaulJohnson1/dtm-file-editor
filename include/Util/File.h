@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <cstdint>
 
-#include <QMainWindow>
+#include <QWidget>
 #include <QString>
 
 #include <DTM/Reader.h>
@@ -19,7 +19,7 @@ namespace tas::dtm
         File(uint8_t *bytes, size_t size);
         ~File();
 
-        static File *open(QMainWindow *parent);
+        static File *open(QWidget *parent);
         static void save(File *data);
     };
 }

@@ -6,6 +6,7 @@ set(SRCS
     src/DTM/Reader.cc
     src/DTM/DecodedDTMFile.cc
     src/DTM/Writer.cc
+    src/GUI/Component/FramesList.cc
     src/GUI/MainWindow.cc
     src/main.cc
     src/Util/File.cc)
@@ -13,6 +14,8 @@ set(SRCS
 include_directories(include)
 
 set(CMAKE_INCLUE_CURRENT_DIR ON)
+
+set(GCC_COVERAGE_COMPILE_FLAGS "-g")
 
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Core REQUIRED)

@@ -22,7 +22,7 @@ namespace tas::dtm
 
     File::~File()
     {
-        delete[] bytes;
+        delete[] fileContentsPointer;
     }
 
     File *File::open(QWidget *parent)
@@ -52,6 +52,9 @@ namespace tas::dtm
         stream.read((char *)fileContents, fileSize);
 
         File *file = new File(fileContents, fileSize);
+
+        file->filePointer = file;
+        file->fileContentsPointer = fileContents;
 
         return file;
     }

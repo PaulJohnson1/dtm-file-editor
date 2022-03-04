@@ -12,6 +12,9 @@ namespace tas::dtm
 {
     class File
     {
+    private:
+        File *filePointer;
+        uint8_t *fileContentsPointer;
     public:
         uint8_t *bytes;
         size_t size;

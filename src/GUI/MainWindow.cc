@@ -23,7 +23,9 @@ namespace tas::input_gui
 
     MainWindow::~MainWindow()
     {
+        delete dtmFile.file;
         delete mainWindow;
+        delete centralWidget;
     }
 
     void MainWindow::renderDtmFile()

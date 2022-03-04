@@ -16,7 +16,7 @@ namespace tas::input_gui
         QMainWindow *parent;
         QWidget *centralWidget;
         QTableWidget *tableWidget;
-        QTableWidgetItem *rows[16];
+        QTableWidgetItem rows[16];
         
         std::vector<QTableWidgetItem *> tableItemPointers;
         dtm::DecodedDTMFile *dtmFile;

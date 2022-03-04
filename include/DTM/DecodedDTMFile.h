@@ -17,8 +17,8 @@ namespace tas::dtm
     class DecodedDTMFile
     {
     private:
-        File *file;
     public:
+        File *file;
         binary::Reader reader;
 
         DecodedDTMFile(File *bytes);

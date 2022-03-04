@@ -17,6 +17,5 @@ namespace tas::dtm
 
     DecodedDTMFile::~DecodedDTMFile()
     {
-        delete file;
     }
 }

@@ -23,7 +23,7 @@ namespace tas::dtm::binary
          * @param currentPosition aka offset
          * @return returns true if you are at the end of the binary
          */
-        bool parseFrame(size_t &currentPosition);
+        bool parseFrame(size_t &currentPosition, uint64_t polls);
 
     public:
         Header dtmHeader;

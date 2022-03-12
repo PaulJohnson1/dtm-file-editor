@@ -8,6 +8,7 @@
 
 #include <DTM/DecodedDTMFile.h>
 #include <GUI/Component/FramesList.h>
+#include <GUI/Layout.h>
 #include <Util/File.h>
 
 namespace tas::input_gui
@@ -18,6 +19,7 @@ namespace tas::input_gui
         QMainWindow *mainWindow;
         QWidget *centralWidget;
         dtm::DecodedDTMFile dtmFile;
+        Ui_Form layout;
 
         MainWindow();
         ~MainWindow();

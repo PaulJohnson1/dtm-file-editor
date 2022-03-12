@@ -7,6 +7,7 @@
 #include <QWidget>
 
 #include <DTM/DecodedDTMFile.h>
+#include <GUI/Layout.h>
 
 namespace tas::input_gui
 {
@@ -14,17 +15,14 @@ namespace tas::input_gui
     {
     private:
         QMainWindow *parent;
-        QWidget *centralWidget;
-        QTableWidget *tableWidget;
-        QTableWidgetItem rows[16];
-        
+        Ui_Form *layout;
+
         std::vector<QTableWidgetItem *> tableItemPointers;
         dtm::DecodedDTMFile *dtmFile;
 
     public:
-        FramesList(QMainWindow *parent, QWidget *centralWidget, dtm::DecodedDTMFile *dtmFile);
+        FramesList(QMainWindow *parentl, dtm::DecodedDTMFile *dtmFile, Ui_Form *layout);
         ~FramesList();
         void renderFrames();
-        void initializeTable();
     };
 }

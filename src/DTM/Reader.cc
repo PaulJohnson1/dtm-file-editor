@@ -21,15 +21,17 @@ namespace tas::dtm::binary
         dtmHeader = bytes;
 
         size_t position = 0x100;
+        uint64_t polls = 0;
 
         while (true)
         {
-            if (parseFrame(position))
+            polls++;
+            if (parseFrame(position, polls))
                 break;
         }
     }
 
-    bool Reader::parseFrame(size_t &currentPosition)
+    bool Reader::parseFrame(size_t &currentPosition, uint64_t polls)
     {
         using namespace constants;
         using util::readMemoryOffsetAs;
@@ -41,55 +43,61 @@ namespace tas::dtm::binary
             return true;
 
         DataFrame frame;
+        frame.inputIndex = polls;
 
-        frame.reportMode = readMemoryOffsetAs<uint8_t>(bytes, currentPosition + 1);
+        uint8_t offset = 0;
+
+        if (readMemoryOffsetAs<uint8_t>(bytes, currentPosition + 1) == 0xa1)
+            offset = 1;
+
+        frame.reportMode = readMemoryOffsetAs<uint8_t>(bytes, currentPosition + offset + 1);
 
         if (frame.reportMode == DataReportMode::Buttons)
         {
-            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + 2);
+            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + offset + 2);
         }
         else if (frame.reportMode == DataReportMode::Buttons_IrBytes10_ExtensionBytes9)
         {
-            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + 2);
-            std::copy(bytes + 3, bytes + 10, frame.irData);
-            std::copy(bytes + 11, bytes + 20, frame.extensionData);
+            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + offset + 2);
+            std::copy(bytes + offset + 3, bytes + offset + 10, frame.irData);
+            std::copy(bytes + offset + 11, bytes + offset + 20, frame.extensionData);
         }
         else if (frame.reportMode == DataReportMode::Buttons_Accelerometer)
         {
-            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + 2);
-            std::copy(bytes + 3, bytes + 6, frame.accelerometor);
+            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + offset + 2);
+            std::copy(bytes + offset + 3, bytes + offset + 6, frame.accelerometor);
         }
         else if (frame.reportMode == DataReportMode::Buttons_Accelerometer_ExtensionBytes16)
         {
-            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + 2);
-            std::copy(bytes + 3, bytes + 6, frame.accelerometor);
-            std::copy(bytes + 7, bytes + 16, frame.extensionData);
+            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + offset + 2);
+            std::copy(bytes + offset + 3, bytes + offset + 6, frame.accelerometor);
+            std::copy(bytes + offset + 7, bytes + offset + 16, frame.extensionData);
         }
         else if (frame.reportMode == DataReportMode::Buttons_Accelerometer_IrBytes10_ExtensionBytes6)
         {
-            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + 2);
-            std::copy(bytes + 3, bytes + 6, frame.accelerometor);
-            std::copy(bytes + 7, bytes + 10, frame.accelerometor);
-            std::copy(bytes + 11, bytes + 17, frame.accelerometor);
+            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + offset + 2);
+            std::copy(bytes + offset + 3, bytes + offset + 6, frame.accelerometor);
+            std::copy(bytes + offset + 7, bytes + offset + 10, frame.accelerometor);
+            std::copy(bytes + offset + 11, bytes + offset + 17, frame.accelerometor);
         }
         else if (frame.reportMode == DataReportMode::Buttons_Accelerometer_IrBytes12)
         {
-            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + 2);
-            std::copy(bytes + 3, bytes + 6, frame.accelerometor);
-            std::copy(bytes + 7, bytes + 19, frame.irData);
+            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + offset + 2);
+            std::copy(bytes + offset + 3, bytes + offset + 6, frame.accelerometor);
+            std::copy(bytes + offset + 7, bytes + offset + 19, frame.irData);
         }
         else if (frame.reportMode == DataReportMode::Buttons_IrBytes10_ExtensionBytes9)
         {
-            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + 2);
-            std::copy(bytes + 3, bytes + 10, frame.accelerometor);
-            std::copy(bytes + 11, bytes + 20, frame.accelerometor);
+            frame.buttonFlags = readMemoryOffsetAs<uint16_t>(bytes, currentPosition + offset + 2);
+            std::copy(bytes + offset + 3, bytes + offset + 10, frame.accelerometor);
+            std::copy(bytes + offset + 11, bytes + offset + 20, frame.accelerometor);
         }
         else if (frame.reportMode == DataReportMode::ExtensionBytes21)
         {
             std::copy(bytes + 2, bytes + 23, frame.extensionData);
         }
         else
-            throw std::runtime_error("unknown report mode");
+            throw std::runtime_error(std::string("unknown report mode ") + std::to_string(frame.reportMode));
 
         currentPosition += frameSize + 1;
 

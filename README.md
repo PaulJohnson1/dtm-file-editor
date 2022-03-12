@@ -1,2 +1,2 @@
 # dtm-file-editor
-## status: read only
+## status: not functional

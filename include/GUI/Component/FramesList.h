@@ -4,6 +4,7 @@
 
 #include <QMainWindow>
 #include <QTableWidget>
+#include <QTableWidgetItem>
 #include <QWidget>
 
 #include <DTM/DecodedDTMFile.h>

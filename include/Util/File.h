@@ -4,7 +4,6 @@
 #include <cstdint>
 
 #include <QWidget>
-#include <QString>
 
 #include <DTM/Reader.h>
 

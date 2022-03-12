@@ -1,16 +1,15 @@
 #include <Util/File.h>
 
-#include <cstdint>
-#include <exception>
-#include <fstream>
-#include <iostream>
 #include <cstddef>
 #include <cstdint>
+#include <fstream>
+#include <stdexcept>
+#include <string>
 
 #include <QFile>
 #include <QFileDialog>
-#include <QWidget>
 #include <QString>
+#include <QWidget>
 
 #include <DTM/Reader.h>
 

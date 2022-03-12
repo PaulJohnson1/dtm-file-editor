@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-#include <QPushButton>
-#include <QVBoxLayout>
+#include <QMainWindow>
 #include <QWidget>
 
 #include <DTM/DecodedDTMFile.h>

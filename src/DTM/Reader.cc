@@ -1,14 +1,14 @@
 #include <DTM/Reader.h>
 
-#include <bitset>
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
-#include <exception>
+#include <stdexcept>
+#include <string>
 
 #include <DTM/BinaryFormat/Constants/DataReportMode.h>
 #include <DTM/BinaryFormat/DataFrame.h>
 #include <DTM/BinaryFormat/Header.h>
-#include <DTM/DecodedDTMFile.h>
 #include <Util/ReadMemoryOffsetAs.h>
 
 namespace tas::dtm::binary

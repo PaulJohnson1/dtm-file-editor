@@ -1,13 +1,9 @@
 #include <GUI/Component/FramesList.h>
 
 #include <iostream>
+#include <vector>
 
-#include <QAction>
-#include <QApplication>
 #include <QMainWindow>
-#include <QTableWidget>
-#include <QWidget>
-#include <QtWidgets/QHeaderView>
 
 #include <DTM/DecodedDTMFile.h>
 #include <GUI/Component/Frame.h>

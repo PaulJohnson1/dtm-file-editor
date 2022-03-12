@@ -1,9 +1,5 @@
 #include <DTM/DecodedDTMFile.h>
 
-#include <cstddef>
-#include <cstdint>
-#include <vector>
-
 #include <DTM/BinaryFormat/Header.h>
 #include <DTM/BinaryFormat/DataFrame.h>
 #include <DTM/Reader.h>

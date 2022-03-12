@@ -3,8 +3,6 @@
 #include <bitset>
 #include <cstdint>
 
-#include <DTM/BinaryFormat/Constants/DataReportMode.h>
-
 namespace tas::dtm::binary
 {
     class DataFrame

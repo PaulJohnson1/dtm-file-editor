@@ -1,9 +1,9 @@
 #include <DTM/BinaryFormat/DataFrame.h>
 
-#include <QAction>
-#include <QTreeWidgetItem>
 #include <QMainWindow>
+#include <QTreeWidgetItem>
 
+#include <DTM/BinaryFormat/DataFrame.h>
 #include <GUI/Component/Frame.h>
 #include <GUI/Layout.h>
 
